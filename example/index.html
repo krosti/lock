@@ -19,7 +19,7 @@
           <div class="navbar-header">
             <h1 class="navbar-brand">
               <a href="/">
-                <img src="//styleguide.auth0.com/img/auth0_logo.png"/>  
+                <img src="//styleguide.auth0.com/img/auth0_logo.png"/>
               </a>
             </h1>
           </div>
@@ -93,6 +93,7 @@
               <li><a id="login-button-inside-container"><i></i>Login (inside a DIV)</a></li>
               <li><a id="login-button-all"><i></i>Login (all languages)</a></li>
               <li><a id="signup-button-footer-text"><i></i>Show SignUp (footer text)</a></li>
+              <li><a id="login-button-sms-authentication"><i></i>Login (SMS authentication)</a></li>
             </ul>
           </div>
         </div>
@@ -409,6 +410,19 @@
               callbackURL: window.location.href,
               responseType: 'token',
               dict: dict
+            });
+          });
+
+          $('#login-button-sms-authentication').on('click', function() {
+            var cid = credentials.mdocs.clientID;
+            var domain = credentials.mdocs.domain;
+
+            var widget = new Auth0Lock(cid, domain);
+
+            trackEvents(widget);
+            widget.show({
+              connections: ['sms'],
+              apiToken: 'jwtAccessToken'
             });
           });
 
