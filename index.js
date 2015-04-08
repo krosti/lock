@@ -558,7 +558,7 @@ Auth0Lock.prototype.display = function(options, callback) {
 
     // resolve view
     if ('signin' === this.options.mode) {
-
+      console.log(this.options)
       // if user in AD ip range
       if (this.$ssoData && this.$ssoData.connection) {
         return this._kerberosPanel(this.options, callback);
@@ -868,7 +868,7 @@ Auth0Lock.prototype._showError = function (message) {
  */
 
 Auth0Lock.prototype._showSuccess = function (message) {
-
+  console.log(message)
   // if no message, clean success span
   if (!message) return this.query('.a0-success').html('').addClass('a0-hide');
   // else, show and render success message
