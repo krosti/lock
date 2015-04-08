@@ -407,7 +407,6 @@ Auth0Lock.prototype.exhibit = function() {
  */
 
 Auth0Lock.prototype.show = function(options, callback) {
-  console.log(options)
   var params = getShowParams(options, callback);
   var opts = _.extend({ mode: 'signin' }, params.options);
   return this.display(opts, params.callback);
@@ -558,7 +557,6 @@ Auth0Lock.prototype.display = function(options, callback) {
 
     // resolve view
     if ('signin' === this.options.mode) {
-      console.log(this.options)
       // if user in AD ip range
       if (this.$ssoData && this.$ssoData.connection) {
         return this._kerberosPanel(this.options, callback);
@@ -801,7 +799,7 @@ Auth0Lock.prototype.setPanel = function(panel, name) {
 
   //Removes error messages on new views.
   this._showError();
-
+  
   this.query('.a0-mode-container').html(el);
   this.emit('%s ready'.replace('%s', pname));
 };
@@ -868,7 +866,6 @@ Auth0Lock.prototype._showError = function (message) {
  */
 
 Auth0Lock.prototype._showSuccess = function (message) {
-  console.log(message)
   // if no message, clean success span
   if (!message) return this.query('.a0-success').html('').addClass('a0-hide');
   // else, show and render success message
@@ -1099,8 +1096,7 @@ Auth0Lock.prototype._signinSocial = function (e, connection, extraParams, panel)
   var options = panel.options;
   var strategyName = typeof target === 'string' ? target : target.getAttribute('data-strategy');
   var strategy = options._getClientStrategyByName(strategyName);
-console.log(connection)
-console.log(strategy)
+
   var connectionName = connection || strategy.connections[0].name;
 
   // use authParams
